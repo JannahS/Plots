@@ -1,11 +1,13 @@
-install.packages("DiagrammeRsvg")
-install.packages("rsvg")
 
+install.packages("DiagrammeR")
+install.packages("rsvg")
 # This code generates a flowchart of bioinformatics skills using the DiagrammeR package in R.
 
 library(DiagrammeR)
 library(DiagrammeRsvg)
 library(rsvg)
+
+
 
 graph <- grViz("
 digraph bioinformatics_skills {
@@ -14,17 +16,17 @@ digraph bioinformatics_skills {
 
   node [shape = box, style = filled, fontname = Helvetica, fontsize = 12]
 
-  # Main categories 
-  A [label = '🧬 Bioinformatics' fillcolor = '#FFDDC1' align=left]
-  B [label = '📊 Data & Statistical Analysis' fillcolor = '#C1E1C1' align=left]
-  C [label = '💻 Programming & Scripting' fillcolor = '#A1C6EA' align=left]
-  D [label = '📉 Data Visualization' fillcolor = '#FFD1DC' align=left]
-  E [label = '🗄️ Database Management' fillcolor = '#E2C1C1' align=left]
-  F [label = '🤖 Machine Learning & AI' fillcolor = '#C1C8E4' align=left]
-  G [label = '✍️ Scientific Writing' fillcolor = '#F4C2C2' align=left]
-  H [label = '🤝 Soft Skills' fillcolor = '#C1E0F4' align=left]
+  # Main categories (Colored)
+  A [label = '🧬 Bioinformatics' fillcolor = '#FFDDC1']
+  B [label = '📊 Data & Statistical Analysis' fillcolor = '#C1E1C1']
+  C [label = '💻 Programming & Scripting' fillcolor = '#A1C6EA']
+  D [label = '📉 Data Visualization' fillcolor = '#FFD1DC']
+  E [label = '🗄️ Database Management' fillcolor = '#E2C1C1']
+  F [label = '🤖 Machine Learning & AI' fillcolor = '#C1C8E4']
+  G [label = '✍️ Scientific Writing' fillcolor = '#F4C2C2']
+  H [label = '🤝 Soft Skills' fillcolor = '#C1E0F4']
 
-  # Subcategories 
+  # Subcategories (Grey-filled rectangular boxes)
   A1 [label = 'NGS Analysis, WGS, LRS,\\nRNA-Seq Analysis, Epigenomics,\\nClinical Studies' fillcolor = '#D3D3D3']
   B1 [label = 'R, Python, SPSS, PRISM' fillcolor = '#D3D3D3']
   C1 [label = 'R, Bash, Python, HPC,\\nGitHub, Docker, WDL' fillcolor = '#D3D3D3']
@@ -34,7 +36,7 @@ digraph bioinformatics_skills {
   G1 [label = 'Research Papers, Grant Writing,\\nISO Compliance SOPs' fillcolor = '#D3D3D3']
   H1 [label = 'Time Management, Teamwork,\\nOral Communication,\\nCritical Thinking, Creativity' fillcolor = '#D3D3D3']
 
-  # main categories align to the left
+  # Ensuring subcategories align horizontally with main categories
   { rank = same; A A1 }
   { rank = same; B B1 }
   { rank = same; C C1 }
@@ -44,35 +46,15 @@ digraph bioinformatics_skills {
   { rank = same; G G1 }
   { rank = same; H H1 }
 
-  # Connecting main categories and subcategories with straight lines
-  A -> A1 [arrowhead=none, weight=0]
-  B -> B1 [arrowhead=none, weight=0]
-  C -> C1 [arrowhead=none, weight=0]
-  D -> D1 [arrowhead=none, weight=0]
-  E -> E1 [arrowhead=none, weight=0]
-  F -> F1 [arrowhead=none, weight=0]
-  G -> G1 [arrowhead=none, weight=0]
-  H -> H1 [arrowhead=none, weight=0]
-
-  # Invisible helper nodes to push main categories to the left
-  X1 [style=invis]
-  X2 [style=invis]
-  X3 [style=invis]
-  X4 [style=invis]
-  X5 [style=invis]
-  X6 [style=invis]
-  X7 [style=invis]
-  X8 [style=invis]
-
-  # Aligning invisible nodes with main categories to enforce left alignment
-  X1 -> A [style=invis]
-  X2 -> B [style=invis]
-  X3 -> C [style=invis]
-  X4 -> D [style=invis]
-  X5 -> E [style=invis]
-  X6 -> F [style=invis]
-  X7 -> G [style=invis]
-  X8 -> H [style=invis]
+  # Connecting main categories and subcategories with straight lines (No arrowheads)
+  A -> A1 [arrowhead=none]
+  B -> B1 [arrowhead=none]
+  C -> C1 [arrowhead=none]
+  D -> D1 [arrowhead=none]
+  E -> E1 [arrowhead=none]
+  F -> F1 [arrowhead=none]
+  G -> G1 [arrowhead=none]
+  H -> H1 [arrowhead=none]
 
   # Vertical flow between main categories (No arrowheads)
   A -> B [arrowhead=none]
@@ -83,8 +65,10 @@ digraph bioinformatics_skills {
   F -> G [arrowhead=none]
   G -> H [arrowhead=none]
 }
+  
+  
+  
 ")
-
 
 
 # Convert to SVG and Save as PNG
